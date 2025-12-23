@@ -28,7 +28,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
     }
-    namespace 'com.ryandens.javaagent.android.library.example'
+    namespace 'io.github.neboskreb.javaagent.example.android.library'
 
     kotlin {
         compilerOptions {

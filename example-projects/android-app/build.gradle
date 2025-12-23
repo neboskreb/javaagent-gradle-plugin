@@ -9,7 +9,7 @@ plugins {
 
 android {
     defaultConfig {
-        applicationId "com.ryandens.javaagent.android.app.example"
+        applicationId "io.github.neboskreb.javaagent.example.android.app"
         minSdkVersion 36
         targetSdkVersion 36
         compileSdk = 36
@@ -29,7 +29,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
     }
-    namespace 'com.ryandens.javaagent.android.app.example'
+    namespace 'io.github.neboskreb.javaagent.example.android.app'
 
     kotlin {
         compilerOptions {

@@ -45,7 +45,7 @@ gradlePlugin {
             id = "io.github.neboskreb.javaagent"
             displayName = "Javaagent Plugin"
             description = "Automatically attaches javaagents to the Java and Android test tasks"
-            implementationClass = "com.ryandens.javaagent.JavaagentPlugin"
+            implementationClass = "io.github.neboskreb.javaagent.JavaagentPlugin"
             tags.set(listOf("javaagent", "instrumentation", "test"))
         }
     }
