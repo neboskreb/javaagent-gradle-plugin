@@ -38,8 +38,8 @@ dependencies {
 }
 
 gradlePlugin {
-    website.set("https://www.ryandens.com")
-    vcsUrl.set("https://github.com/ryandens/javaagent-gradle-plugin")
+    website.set("https://github.com/neboskreb/javaagent-gradle-plugin")
+    vcsUrl.set("https://github.com/neboskreb/javaagent-gradle-plugin")
     plugins {
         create("JavaagentPlugin") {
             id = "io.github.neboskreb.javaagent"
