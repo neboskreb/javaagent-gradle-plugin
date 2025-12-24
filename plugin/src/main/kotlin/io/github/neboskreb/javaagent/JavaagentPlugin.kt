@@ -14,27 +14,17 @@ class JavaagentPlugin : Plugin<Project> {
 
     override fun apply(project: Project) {
         project.configurations.register(CONFIGURATION_NAME) { configuration ->
-            // we expect javaagents to come as shaded JARs
-            configuration.isTransitive = false
+            configuration.isCanBeResolved = false
+            configuration.isCanBeConsumed = false
+            configuration.description = "Declares Java agent dependencies."
         }
 
         project.configurations.register(TEST_CONFIGURATION_NAME) { configuration ->
-            // we expect javaagents to come as shaded JARs
-            configuration.isTransitive = false
+            configuration.isCanBeResolved = false
+            configuration.isCanBeConsumed = false
+            configuration.description = "Declares Java agent dependencies for unit tests."
             val javaagentConfiguration = project.configurations.named(CONFIGURATION_NAME)
             configuration.extendsFrom(javaagentConfiguration.get())
-            configuration.resolutionStrategy { strategy ->
-                strategy.eachDependency { dep ->
-                    if (dep.requested.version.isNullOrBlank()) {
-                        dep.useVersion(
-                            JavaagentVersionUtil.versionFromDependencyAndConfiguration(
-                                dep.requested,
-                                project.configurations.named("testRuntimeClasspath"),
-                            ),
-                        )
-                    }
-                }
-            }
         }
 
 
