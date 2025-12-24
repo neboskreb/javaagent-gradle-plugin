@@ -5,10 +5,16 @@ import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
+import kotlin.Unit;
+import org.gradle.api.file.FileCollection;
 import org.gradle.api.provider.Provider;
+import org.gradle.api.tasks.testing.Test;
 import org.gradle.internal.os.OperatingSystem;
 import org.gradle.process.CommandLineArgumentProvider;
 import org.gradle.process.JavaForkOptions;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Utility class for configuring {@link JavaForkOptions}
@@ -54,4 +60,29 @@ public final class JavaForkOptionsConfigurer {
       };
     javaForkOptions.getJvmArgumentProviders().add(list);
   }
+
+    public static void configureJavaForkOptions(@NotNull Test javaForkOptions, @NotNull Provider<@NotNull FileCollection> javaagentConfiguration) {
+        //noinspection Convert2Lambda
+        CommandLineArgumentProvider list = new CommandLineArgumentProvider() {
+            @Override
+            public Iterable<String> asArguments() {
+                return StreamSupport.stream(javaagentConfiguration.get().spliterator(), false)
+                        .map(
+                                file -> {
+                                    try {
+                                        String path = file.getCanonicalPath();
+                                        if (OperatingSystem.current().isWindows()) {
+                                            // Don't let the spaces in the Windows path break the command line
+                                            path = '"' + path + '"';
+                                        }
+                                        return "-javaagent:" + path;
+                                    } catch (IOException e) {
+                                        throw new UncheckedIOException(e);
+                                    }
+                                })
+                        .collect(Collectors.toList());
+            }
+        };
+        javaForkOptions.getJvmArgumentProviders().add(list);
+    }
 }

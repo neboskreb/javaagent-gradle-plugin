@@ -40,10 +40,20 @@ class JavaagentAndroidTestPlugin : Plugin<Project> {
                     // Now you can configure the task.
                     // This block is executed only if the task is needed for the build.
                     val javaagentTestConfiguration = project.configurations.named(TEST_CONFIGURATION_NAME)
+
+                    val resolvableAgentConf = project.configurations.register("javaagent${variant.name}TestClasspath") { conf ->
+                        conf.isCanBeResolved = true // This one IS resolvable.
+                        conf.isCanBeConsumed = false
+                        conf.description = "--internal-- Resolvable configuration for ${variant.name}'s test agent."
+                        conf.attributes.attributeProvider(variant.runtimeConfiguration.attributes)
+                        conf.extendsFrom(javaagentTestConfiguration.get())
+                        conf.extendsFrom(variant.runtimeConfiguration)
+                    }
+
                     JavaForkOptionsConfigurer.configureJavaForkOptions(
                         task,
-                        javaagentTestConfiguration.map { configuration ->
-                            configuration.files
+                        resolvableAgentConf.map { configuration ->
+                            configuration.incoming.files
                         },
                     )
                 }
