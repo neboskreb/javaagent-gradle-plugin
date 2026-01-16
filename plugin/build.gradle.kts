@@ -30,7 +30,7 @@ repositories {
 dependencies {
     compileOnly("com.android.tools.build:gradle:8.13.2")
 
-    testImplementation("com.android.application:com.android.application.gradle.plugin:8.13.2")
+    testImplementation("com.android.application:com.android.application.gradle.plugin:9.0.0")
     testImplementation("com.android.library:com.android.library.gradle.plugin:8.13.2")
     testImplementation("org.jetbrains.kotlin:kotlin-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
