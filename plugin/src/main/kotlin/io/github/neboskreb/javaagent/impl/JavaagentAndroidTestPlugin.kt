@@ -2,6 +2,7 @@ package io.github.neboskreb.javaagent.impl
 
 import com.android.build.api.variant.AndroidComponentsExtension
 import com.android.build.api.variant.ApplicationAndroidComponentsExtension
+import com.android.build.api.variant.HasUnitTest
 import com.android.build.api.variant.LibraryAndroidComponentsExtension
 import io.github.neboskreb.javaagent.JavaForkOptionsConfigurer
 import io.github.neboskreb.javaagent.JavaagentPlugin.Companion.TEST_CONFIGURATION_NAME
@@ -33,9 +34,8 @@ class JavaagentAndroidTestPlugin : Plugin<Project> {
         // This is the correct, modern way to interact with AGP.
         androidComponents.onVariants(androidComponents.selector().all()) { variant ->
             // Safely get the name of the unit test task for this variant
-            @Suppress("DEPRECATION") val unitTestComponent = variant.unitTest
-            if (unitTestComponent != null) {
-                unitTestComponent.configureTestTask { task ->
+            val unitTestComponent = (variant as? HasUnitTest)?.unitTest
+            unitTestComponent?.configureTestTask { task ->
                     project.logger.info("JavaagentPlugin: Configuring task ':{}:{}'", project.name, task.name)
                     // Now you can configure the task.
                     // This block is executed only if the task is needed for the build.
@@ -46,7 +46,6 @@ class JavaagentAndroidTestPlugin : Plugin<Project> {
                             configuration.files
                         },
                     )
-                }
             }
         }
     }
