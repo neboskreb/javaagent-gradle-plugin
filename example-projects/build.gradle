@@ -1,4 +1,11 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+plugins {
+    id 'com.android.application' apply false
+    id 'com.android.library' apply false
+    id 'de.mannodermaus.android-junit5' apply false
+    id 'io.github.neboskreb.javaagent' apply false
+}
+
 allprojects {
     repositories {
         mavenCentral()
