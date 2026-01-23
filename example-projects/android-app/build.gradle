@@ -1,7 +1,4 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-
 plugins {
-    alias(libs.plugins.kotlin.android)
     id 'com.android.application'
     id 'de.mannodermaus.android-junit5'
     id 'io.github.neboskreb.javaagent'
@@ -30,12 +27,6 @@ android {
         targetCompatibility JavaVersion.VERSION_17
     }
     namespace 'io.github.neboskreb.javaagent.example.android.app'
-
-    kotlin {
-        compilerOptions {
-            jvmTarget = JvmTarget.JVM_17
-        }
-    }
 }
 
 dependencies {
