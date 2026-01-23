@@ -13,7 +13,7 @@ pluginManagement {
         id("com.android.application").version("9.0.0")
         id("com.android.library").version("9.0.0")
         id("de.mannodermaus.android-junit5").version("2.0.1")
-        id("io.github.neboskreb.javaagent").version("1.2.7-SNAPSHOT")
+        id("io.github.neboskreb.javaagent").version("1.2.7")
     }
 }
 
