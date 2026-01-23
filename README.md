@@ -49,7 +49,7 @@ pluginManagement {
     }
 
     plugins {
-        id("io.github.neboskreb.javaagent").version("1.2.6")
+        id("io.github.neboskreb.javaagent").version("1.2.7")
     }
 }
 ```
