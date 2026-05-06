@@ -28,10 +28,10 @@ repositories {
 }
 
 dependencies {
-    compileOnly("com.android.tools.build:gradle:9.1.0")
+    compileOnly("com.android.tools.build:gradle:9.2.1")
 
-    testImplementation("com.android.application:com.android.application.gradle.plugin:9.1.0")
-    testImplementation("com.android.library:com.android.library.gradle.plugin:9.1.0")
+    testImplementation("com.android.application:com.android.application.gradle.plugin:9.2.1")
+    testImplementation("com.android.library:com.android.library.gradle.plugin:9.2.1")
     testImplementation("org.jetbrains.kotlin:kotlin-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
     testImplementation("org.apache.commons:commons-compress:1.28.0")
