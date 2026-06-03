@@ -1,5 +1,5 @@
 [versions]
-coreKtx = "1.18.0"
+coreKtx = "1.19.0"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
